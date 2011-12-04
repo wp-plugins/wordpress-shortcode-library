@@ -1,9 +1,9 @@
 <?php
 /* 
-Plugin Name: WordPress Shortcode Library by Host Like Toast
+Plugin Name: WordPress Shortcode Library
 Plugin URI: http://www.hostliketoast.com/wordpress-resource-centre/
 Description: Collection of Shortcodes for Wordpress and a place for you to define your own. <a href="http://www.hostliketoast.com/2011/12/extending-wordpress-powerful-shortcodes/">See here for more information</a>.
-Version: 1.0
+Version: 1.1
 Author: Host Like Toast
 Author URI: http://www.hostliketoast.com 
 */
@@ -12,7 +12,7 @@ Author URI: http://www.hostliketoast.com
  * Copyright (c) 2011 Host Like Toast <helpdesk@hostliketoast.com>
  * All rights reserved.
  * 
- * "WordPress Shortcode Library by Host Like Toast" is distributed under the GNU General Public License, Version 2,
+ * "WordPress Shortcode Library" is distributed under the GNU General Public License, Version 2,
  * June 1991. Copyright (C) 1989, 1991 Free Software Foundation, Inc., 51 Franklin
  * St, Fifth Floor, Boston, MA 02110, USA
  * 
@@ -103,6 +103,21 @@ class HLT_WordPressShortcodeLibrary {
 		return $sReturn;
 
 	}//htmlDiv
+	
+	public function tweet( $inaAtts = array(), $insContent = '' ) {
+
+		$this->def( &$inaAtts, 'count', 'none' );
+		$this->def( &$inaAtts, 'via' );
+		$this->def( &$inaAtts, 'related' );
+
+		$sReturn = '<a href="https://twitter.com/share" class="twitter-share-button" data-count="'.$inaAtts['count'].'"'
+						. $this->cleanHtml( $inaAtts['via'], 'data-via' )
+						. $this->cleanHtml( $inaAtts['related'], 'data-related' )
+						.'>'.'Tweet'.'</a>';
+		$sReturn .= '<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>';
+		
+		return $sReturn;
+	}
 
 	/**
 	 * A helper function; not a WordPress Shortcode.

@@ -4,7 +4,7 @@ Donate link: http://www.hostliketoast.com/
 Tags: Shortcodes, Library, WordPress
 Requires at least: 3.2.0
 Tested up to: 3.3
-Stable tag: 1.0
+Stable tag: 1.1
 
 With Wordpress Shortcode Library we bring you a collection of Shortcodes to help you get more from WordPress.
 
@@ -17,9 +17,9 @@ This will create a piece of HTML that is a DIV element with style=clear:both.
 
 [HTMLDIV]
 You can add a DIV element with parameters:
-* class=""
-* id=""
-* style=""
+*	class=""
+*	id=""
+*	style=""
 
 You are free to add your own.
 
@@ -61,10 +61,20 @@ Edit as desired.
 
 == Changelog ==
 
+= 1.1 =
+* Added Shortcode: [TWEET]  (this creates a Twitter share button for the given page wherever you write it).
+Parameters include:
+count="none/horizontal/vertical" (optional- default is 'none')
+via="your Twitter Handle" (optional)
+related="another related Twitter handle" (optional)
+
 = 1.0 =
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.1 =
+* Added Shortcode: [TWEET]  (this creates a Twitter share button for the given page wherever you write it).
 
 = 1.0 =
 * Initial release.
