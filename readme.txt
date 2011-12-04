@@ -10,7 +10,7 @@ With Wordpress Shortcode Library we bring you a collection of Shortcodes to help
 
 == Description ==
 
-Currently there are 2 active shortcodes:
+Currently there are 2 active shortcodes: (See Changelog for updates!)
 
 [DIVCLEAR]
 This will create a piece of HTML that is a DIV element with style=clear:both.
