@@ -1,9 +1,9 @@
 <?php
 /* 
-Plugin Name: WordPress Shortcode Library
+Plugin Name: WordPress Shortcode Library by Host Like Toast
 Plugin URI: http://www.hostliketoast.com/wordpress-resource-centre/
 Description: Collection of Shortcodes for Wordpress and a place for you to define your own. <a href="http://www.hostliketoast.com/2011/12/extending-wordpress-powerful-shortcodes/">See here for more information</a>.
-Version: 1.1
+Version: 1.2
 Author: Host Like Toast
 Author URI: http://www.hostliketoast.com 
 */
@@ -104,6 +104,12 @@ class HLT_WordPressShortcodeLibrary {
 
 	}//htmlDiv
 	
+	/**
+	 * Prints a Twitter Share button for the current page.
+	 * 
+	 * @param $inaAtts
+	 * @param $insContent
+	 */
 	public function tweet( $inaAtts = array(), $insContent = '' ) {
 
 		$this->def( &$inaAtts, 'count', 'none' );
@@ -117,6 +123,17 @@ class HLT_WordPressShortcodeLibrary {
 		$sReturn .= '<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>';
 		
 		return $sReturn;
+	}
+	
+	/**
+	 * Simply prevents processing of all nested shortcodes.
+	 * 
+	 * @param $inaAtts
+	 * @param $insContent
+	 */
+	public function nosc( $inaAtts = array(), $insContent = '' ) {
+
+		return $insContent;
 	}
 
 	/**

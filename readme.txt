@@ -4,24 +4,34 @@ Donate link: http://www.hostliketoast.com/
 Tags: Shortcodes, Library, WordPress
 Requires at least: 3.2.0
 Tested up to: 3.3
-Stable tag: 1.1
+Stable tag: 1.2
 
-With Wordpress Shortcode Library we bring you a collection of Shortcodes to help you get more from WordPress.
+With Wordpress Shortcode Library we bring you a collection of Shortcodes we find useful to help you get more from WordPress.
 
 == Description ==
 
-Currently there are 2 active shortcodes: (See Changelog for updates!)
+Currently there are 4 active shortcodes in the library: (See Changelog for updates!)
+
+[NOSC] ... [/NOSC]
+Short for "No Shortcode". Any shortcodes present within this shortcode are ignored. Useful for writing *about* shortcodes without
+them being interpreted.
+
+[TWEET]
+Add a Twitter Share button for the given page wherever this shortcode is present. There are 3 optional parameters
+count="none/horizontal/vertical" (optional- default is 'none')
+via="your Twitter Handle" (optional)
+related="another related Twitter handle" (optional)
 
 [DIVCLEAR]
 This will create a piece of HTML that is a DIV element with style=clear:both.
 
-[HTMLDIV]
+[HTMLDIV] ... [/HTMLDIV]
 You can add a DIV element with parameters:
-*	class=""
-*	id=""
-*	style=""
+class=""
+id=""
+style=""
 
-You are free to add your own.
+You are also free to edit the file directly to add your own.
 
 More information can be seen here: [Host Like Toast](http://www.hostliketoast.com/2011/12/how-extend-wordpress-powerful-shortcodes/ "Host Like Toast: How To Extend WordPress With Powerful Shortcodes")
 
@@ -61,6 +71,9 @@ Edit as desired.
 
 == Changelog ==
 
+= 1.2 =
+* Added Shortcode: [NOSC] ... [/NOSC]  Any shortcodes present within this shortcode are ignored.
+
 = 1.1 =
 * Added Shortcode: [TWEET]  (this creates a Twitter share button for the given page wherever you write it).
 Parameters include:
@@ -72,6 +85,9 @@ related="another related Twitter handle" (optional)
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2 =
+* Added Shortcode: [NOSC] ... [/NOSC]  Any shortcodes present within this shortcode are ignored.
 
 = 1.1 =
 * Added Shortcode: [TWEET]  (this creates a Twitter share button for the given page wherever you write it).
