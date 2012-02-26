@@ -3,7 +3,7 @@
 Plugin Name: WordPress Shortcode Library by Host Like Toast
 Plugin URI: http://www.hostliketoast.com/wordpress-resource-centre/
 Description: Collection of Shortcodes for Wordpress and a place for you to define your own. <a href="http://www.hostliketoast.com/2011/12/extending-wordpress-powerful-shortcodes/">See here for more information</a>.
-Version: 1.2
+Version: 1.3
 Author: Host Like Toast
 Author URI: http://www.hostliketoast.com 
 */
@@ -30,15 +30,34 @@ Author URI: http://www.hostliketoast.com
  */
 class HLT_WordPressShortcodeLibrary {
 	
-	public function __construct() {
-		$aMethods = get_class_methods( $this );
-		$aExclude = array( 'def', 'cleanHtml' );
-		foreach ( $aMethods as $sMethod ) {
-			if ( !in_array( $sMethod, $aExclude ) ) {
-				add_shortcode( strtoupper( $sMethod ), array( &$this, $sMethod ) );
-			}
+	protected $m_aShortcodes;
+	
+	public function __construct( $bInitialize = false ){
+		if ($bInitialize) $this->initializeShortcodes();
+	}//__construct
+
+	protected function createShortcodeArray() {
+	
+		$this->m_aShortcodes = array(
+			'MYFIRSTSHORTCODE'	=>	'myFirstShortCode',
+			'DIVCLEAR'			=> 	'getDivClearHtml',
+			'PRINTDIV'			=> 	'getDivHtml',
+			'TWEET'				=>	'getTweetButtonHtml',
+			'NOSC'				=>	'doNotProcessShortcode'
+		);
+	}
+	
+	protected function initializeShortcodes() {
+		
+		$this->createShortcodeArray();
+		
+		if ( function_exists('add_shortcode') ) {
+			foreach( $this->m_aShortcodes as $shortcode => $function_to_call ) {
+				add_shortcode($shortcode, array(&$this, $function_to_call) );
+			}//foreach
 		}
-	}//construct
+	}//initializeShortcodes
+	
 	
 	/**
 	 * Here you can create your own Shortcode.
@@ -71,13 +90,9 @@ class HLT_WordPressShortcodeLibrary {
 	 * @param array $inaAtts
 	 * @param string $insContent
 	 */
-	public function divClear( $inaAtts = array(), $insContent = '' ) {
-		
-		$sReturn = do_shortcode('[HTMLDIV style="clear:both" id="bob" class=""]'.$insContent.'[/HTMLDIV]');
-
-		return $sReturn;
-
-	}//divclear
+	public function getDivClearHtml( $inaAtts = array(), $insContent = '' ) {
+		return $this->getDivHtml( array('style'=>'clear:both'), $insContent );
+	}
 	
 	/**
 	 * A function that will output an HTML DIV element. To give the DIV classes or an ID
@@ -89,15 +104,20 @@ class HLT_WordPressShortcodeLibrary {
 	 * @param $inaAtts
 	 * @param $insContent
 	 */
-	public function htmlDiv( $inaAtts = array(), $insContent = '' ) {
+	public function getDivHtml( $inaAtts = array(), $insContent = '' ) {
 
 		$this->def( &$inaAtts, 'class' );
 		$this->def( &$inaAtts, 'id' );
 		$this->def( &$inaAtts, 'style' );
 		
-		$sReturn = '<div '.$this->cleanHtml( $inaAtts['style'], 'style' )
-					.' '.$this->cleanHtml( $inaAtts['id'], 'id' )
-					.' '.$this->cleanHtml( $inaAtts['class'], 'class' )
+		//Items that don't need to be printed if empty
+		$inaAtts['style'] = $this->noEmptyHtml( $inaAtts['style'], 'style' );
+		$inaAtts['id'] = $this->noEmptyHtml( $inaAtts['id'], 'id' );
+		$inaAtts['class'] = $this->noEmptyHtml( $inaAtts['class'], 'class' );
+		
+		$sReturn = '<div '.$inaAtts['style']
+					.$inaAtts['id']
+					.$inaAtts['class']
 					.'>'.do_shortcode( $insContent ).'</div>';
 
 		return $sReturn;
@@ -110,15 +130,19 @@ class HLT_WordPressShortcodeLibrary {
 	 * @param $inaAtts
 	 * @param $insContent
 	 */
-	public function tweet( $inaAtts = array(), $insContent = '' ) {
+	public function getTweetButtonHtml( $inaAtts = array(), $insContent = '' ) {
 
 		$this->def( &$inaAtts, 'count', 'none' );
 		$this->def( &$inaAtts, 'via' );
 		$this->def( &$inaAtts, 'related' );
+		
+		//Items that don't need to be printed if empty
+		$inaAtts['via'] = $this->noEmptyHtml( $inaAtts['via'], 'data-via' );
+		$inaAtts['related'] = $this->noEmptyHtml( $inaAtts['related'], 'data-related' );
 
 		$sReturn = '<a href="https://twitter.com/share" class="twitter-share-button" data-count="'.$inaAtts['count'].'"'
-						. $this->cleanHtml( $inaAtts['via'], 'data-via' )
-						. $this->cleanHtml( $inaAtts['related'], 'data-related' )
+						. $inaAtts['via']
+						. $inaAtts['related']
 						.'>'.'Tweet'.'</a>';
 		$sReturn .= '<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>';
 		
@@ -131,7 +155,7 @@ class HLT_WordPressShortcodeLibrary {
 	 * @param $inaAtts
 	 * @param $insContent
 	 */
-	public function nosc( $inaAtts = array(), $insContent = '' ) {
+	public function doNotProcessShortcode( $inaAtts = array(), $insContent = '' ) {
 
 		return $insContent;
 	}
@@ -147,10 +171,10 @@ class HLT_WordPressShortcodeLibrary {
 	/**
 	 * A helper function; not a WordPress Shortcode.
 	 */
-	protected function cleanHtml( $insCont, $insTag = '' ) {
+	protected function noEmptyHtml( $insCont, $insTag = '' ) {
 		return (($insCont != '')? ' '.$insTag.'="'.$insCont.'" ' : '' );	
 	}
 
 }//class HLT_WordPressShortcodeLibrary
 
-$oHLT_WordPressShortcodeLibrary = new HLT_WordPressShortcodeLibrary();
+$oHLT_WordPressShortcodeLibrary = new HLT_WordPressShortcodeLibrary( true );

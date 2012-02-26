@@ -4,7 +4,7 @@ Donate link: http://www.hostliketoast.com/
 Tags: Shortcodes, Library, WordPress
 Requires at least: 3.2.0
 Tested up to: 3.3
-Stable tag: 1.2
+Stable tag: 1.3
 
 With Wordpress Shortcode Library we bring you a collection of Shortcodes we find useful to help you get more from WordPress.
 
@@ -23,7 +23,7 @@ via="your Twitter Handle" (optional)
 related="another related Twitter handle" (optional)
 
 [DIVCLEAR]
-This will create a piece of HTML that is a DIV element with style=clear:both.
+This will create a piece of HTML that is a DIV element with "style=clear:both".
 
 [HTMLDIV] ... [/HTMLDIV]
 You can add a DIV element with parameters:
@@ -71,6 +71,9 @@ Edit as desired.
 
 == Changelog ==
 
+= 1.3 =
+* Restructured the code to be slightly cleaner so as to more easily as new shortcodes later
+
 = 1.2 =
 * Added Shortcode: [NOSC] ... [/NOSC]  Any shortcodes present within this shortcode are ignored.
 
@@ -85,6 +88,9 @@ related="another related Twitter handle" (optional)
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.3 =
+* Restructured the code to be slightly cleaner so as to more easily as new shortcodes later
 
 = 1.2 =
 * Added Shortcode: [NOSC] ... [/NOSC]  Any shortcodes present within this shortcode are ignored.
