@@ -3,7 +3,7 @@
 Plugin Name: WordPress Shortcode Library by Host Like Toast
 Plugin URI: http://www.hostliketoast.com/wordpress-resource-centre/
 Description: Collection of Shortcodes for Wordpress and a place for you to define your own. <a href="http://www.hostliketoast.com/2011/12/extending-wordpress-powerful-shortcodes/">See here for more information</a>.
-Version: 1.4
+Version: 1.5
 Author: Host Like Toast
 Author URI: http://www.hostliketoast.com 
 */
