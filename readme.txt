@@ -4,13 +4,17 @@ Donate link: http://www.hostliketoast.com/
 Tags: Shortcodes, Library, WordPress
 Requires at least: 3.2.0
 Tested up to: 3.3
-Stable tag: 1.3
+Stable tag: 1.4
 
 With Wordpress Shortcode Library we bring you a collection of Shortcodes we find useful to help you get more from WordPress.
 
 == Description ==
 
 Currently there are 4 active shortcodes in the library: (See Changelog for updates!)
+
+[SITENAME]
+This will create a piece of HTML is your WordPress site title wrapped in a SPAN with ID "siteBrandName"
+You can also change the ID by using ID="yourOwnID"
 
 [NOSC] ... [/NOSC]
 Short for "No Shortcode". Any shortcodes present within this shortcode are ignored. Useful for writing *about* shortcodes without
@@ -71,6 +75,13 @@ Edit as desired.
 
 == Changelog ==
 
+= 1.4 =
+* Added a new shortcode: [SITENAME]. This will output your WordPress site name in a SPAN with default ID "brandedSiteName".
+You change the ID and also add "class" and "style" as you wish. This shortcode is useful so that if you decide to
+alter the name of your site later, and you've used this shortcode throughout, it will automatically update across
+your site! You can apply a consistent style for your site name text throughout the site by referencing the ID.
+I started using it here: [Kick Start Valencia](http://www.kickstartvalencia.com/ "Kick Start Valencia: Start Living in Valencia")
+
 = 1.3 =
 * Restructured the code to be slightly cleaner so as to more easily as new shortcodes later
 
@@ -88,6 +99,9 @@ related="another related Twitter handle" (optional)
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.4 =
+* Added a new shortcode: [SITENAME]. This will output your WordPress site name in a SPAN with ID "brandedSiteName".
 
 = 1.3 =
 * Restructured the code to be slightly cleaner so as to more easily as new shortcodes later

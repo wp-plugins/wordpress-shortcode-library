@@ -3,7 +3,7 @@
 Plugin Name: WordPress Shortcode Library by Host Like Toast
 Plugin URI: http://www.hostliketoast.com/wordpress-resource-centre/
 Description: Collection of Shortcodes for Wordpress and a place for you to define your own. <a href="http://www.hostliketoast.com/2011/12/extending-wordpress-powerful-shortcodes/">See here for more information</a>.
-Version: 1.3
+Version: 1.4
 Author: Host Like Toast
 Author URI: http://www.hostliketoast.com 
 */
@@ -31,8 +31,12 @@ Author URI: http://www.hostliketoast.com
 class HLT_WordPressShortcodeLibrary {
 	
 	protected $m_aShortcodes;
+	protected $m_sSiteName;
 	
 	public function __construct( $bInitialize = false ){
+		
+		$this->m_sSiteName = get_bloginfo('name');
+		
 		if ($bInitialize) $this->initializeShortcodes();
 	}//__construct
 
@@ -43,6 +47,7 @@ class HLT_WordPressShortcodeLibrary {
 			'DIVCLEAR'			=> 	'getDivClearHtml',
 			'PRINTDIV'			=> 	'getDivHtml',
 			'TWEET'				=>	'getTweetButtonHtml',
+			'SITENAME'			=>	'getBrandedSiteName',
 			'NOSC'				=>	'doNotProcessShortcode'
 		);
 	}
@@ -125,6 +130,30 @@ class HLT_WordPressShortcodeLibrary {
 	}//htmlDiv
 	
 	/**
+	 * Will get the name of the Site Title and print it out wrapped in a span so you can
+	 * style it consistently throughout the site.
+	 * 
+	 * ID name defaults to 'brandedSiteName' but you can add your own.
+	 */
+	public function getBrandedSiteName( $inaAtts = array(), $insContent = '' ) {
+		
+		$this->def( &$inaAtts, 'class' );
+		$this->def( &$inaAtts, 'id', 'brandedSiteName' );
+		$this->def( &$inaAtts, 'style' );
+		$inaAtts['style'] = $this->noEmptyHtml( $inaAtts['style'], 'style' );
+		$inaAtts['id'] = $this->noEmptyHtml( $inaAtts['id'], 'id' );
+		$inaAtts['class'] = $this->noEmptyHtml( $inaAtts['class'], 'class' );
+		
+		$sReturn = '<span '.$inaAtts['style']
+					.$inaAtts['id']
+					.$inaAtts['class']
+					.'>'.$this->m_sSiteName.'</span>';
+		
+		return $sReturn;
+	
+	}//getBrandedSiteName
+	
+	/**
 	 * Prints a Twitter Share button for the current page.
 	 * 
 	 * @param $inaAtts
@@ -156,8 +185,16 @@ class HLT_WordPressShortcodeLibrary {
 	 * @param $insContent
 	 */
 	public function doNotProcessShortcode( $inaAtts = array(), $insContent = '' ) {
+		
+		$this->def( &$inaAtts, 'style' );
+		$this->def( &$inaAtts, 'element', 'span' );
+		
+		//
+		$this->noEmptyElement( $inaAtts, 'style' );
+		
+		$sElement = $inaAtts['element'];
 
-		return $insContent;
+		return '<'.$sElement.$inaAtts['style'].'>'.$insContent.'</'.$sElement.'>';
 	}
 
 	/**
@@ -173,6 +210,10 @@ class HLT_WordPressShortcodeLibrary {
 	 */
 	protected function noEmptyHtml( $insCont, $insTag = '' ) {
 		return (($insCont != '')? ' '.$insTag.'="'.$insCont.'" ' : '' );	
+	}
+	protected function noEmptyElement( &$inaArgs, $insAttrKey ) {
+		$sAttrValue = $inaArgs[$insAttrKey];
+		$inaArgs[$insAttrKey] = ( empty($sAttrValue) ) ? '' : ' '.$insAttrKey.'="'.$sAttrValue.'"';
 	}
 
 }//class HLT_WordPressShortcodeLibrary
