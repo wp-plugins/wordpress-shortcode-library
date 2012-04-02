@@ -13,7 +13,7 @@ With Wordpress Shortcode Library we bring you a collection of Shortcodes we find
 Currently there are 5 active shortcodes in the library: (See Changelog for updates!)
 
 [SITENAME]
-This will create a piece of HTML is your WordPress site title wrapped in a SPAN with ID "siteBrandName"
+This will create a piece of HTML that is your WordPress site title wrapped in a SPAN with ID "brandedSiteName"
 You can also change the ID by using ID="yourOwnID"
 
 [NOSC] ... [/NOSC]
