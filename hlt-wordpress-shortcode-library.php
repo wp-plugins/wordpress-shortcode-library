@@ -3,7 +3,7 @@
 Plugin Name: WordPress Shortcode Library by Host Like Toast
 Plugin URI: http://www.hostliketoast.com/wordpress-resource-centre/
 Description: Collection of Shortcodes for Wordpress and a place for you to define your own. <a href="http://www.hostliketoast.com/2011/12/extending-wordpress-powerful-shortcodes/">See here for more information</a>.
-Version: 1.5
+Version: 1.6
 Author: Host Like Toast
 Author URI: http://www.hostliketoast.com 
 */
@@ -58,7 +58,7 @@ class HLT_WordPressShortcodeLibrary {
 		
 		if ( function_exists('add_shortcode') ) {
 			foreach( $this->m_aShortcodes as $shortcode => $function_to_call ) {
-				add_shortcode($shortcode, array(&$this, $function_to_call) );
+				add_shortcode($shortcode, array($this, $function_to_call) );
 			}//foreach
 		}
 	}//initializeShortcodes
@@ -111,9 +111,9 @@ class HLT_WordPressShortcodeLibrary {
 	 */
 	public function getDivHtml( $inaAtts = array(), $insContent = '' ) {
 
-		$this->def( &$inaAtts, 'class' );
-		$this->def( &$inaAtts, 'id' );
-		$this->def( &$inaAtts, 'style' );
+		$this->def( $inaAtts, 'class' );
+		$this->def( $inaAtts, 'id' );
+		$this->def( $inaAtts, 'style' );
 		
 		//Items that don't need to be printed if empty
 		$inaAtts['style'] = $this->noEmptyHtml( $inaAtts['style'], 'style' );
@@ -137,9 +137,9 @@ class HLT_WordPressShortcodeLibrary {
 	 */
 	public function getBrandedSiteName( $inaAtts = array(), $insContent = '' ) {
 		
-		$this->def( &$inaAtts, 'class' );
-		$this->def( &$inaAtts, 'id', 'brandedSiteName' );
-		$this->def( &$inaAtts, 'style' );
+		$this->def( $inaAtts, 'class' );
+		$this->def( $inaAtts, 'id', 'brandedSiteName' );
+		$this->def( $inaAtts, 'style' );
 		$inaAtts['style'] = $this->noEmptyHtml( $inaAtts['style'], 'style' );
 		$inaAtts['id'] = $this->noEmptyHtml( $inaAtts['id'], 'id' );
 		$inaAtts['class'] = $this->noEmptyHtml( $inaAtts['class'], 'class' );
@@ -161,9 +161,9 @@ class HLT_WordPressShortcodeLibrary {
 	 */
 	public function getTweetButtonHtml( $inaAtts = array(), $insContent = '' ) {
 
-		$this->def( &$inaAtts, 'count', 'none' );
-		$this->def( &$inaAtts, 'via' );
-		$this->def( &$inaAtts, 'related' );
+		$this->def( $inaAtts, 'count', 'none' );
+		$this->def( $inaAtts, 'via' );
+		$this->def( $inaAtts, 'related' );
 		
 		//Items that don't need to be printed if empty
 		$inaAtts['via'] = $this->noEmptyHtml( $inaAtts['via'], 'data-via' );
@@ -186,8 +186,8 @@ class HLT_WordPressShortcodeLibrary {
 	 */
 	public function doNotProcessShortcode( $inaAtts = array(), $insContent = '' ) {
 		
-		$this->def( &$inaAtts, 'style' );
-		$this->def( &$inaAtts, 'element', 'span' );
+		$this->def( $inaAtts, 'style' );
+		$this->def( $inaAtts, 'element', 'span' );
 		
 		//
 		$this->noEmptyElement( $inaAtts, 'style' );

@@ -3,8 +3,8 @@ Contributors: paultgoodchild
 Donate link: http://www.hostliketoast.com/
 Tags: Shortcodes, Library, WordPress
 Requires at least: 3.2.0
-Tested up to: 3.3
-Stable tag: 1.5
+Tested up to: 3.4
+Stable tag: 1.6
 
 With Wordpress Shortcode Library we bring you a collection of Shortcodes we find useful to help you get more from WordPress.
 
@@ -75,6 +75,10 @@ Edit as desired.
 
 == Changelog ==
 
+= 1.6 =
+
+* Fix: Call-time pass-by-reference error reported: http://wordpress.org/support/topic/plugin-wordpress-shortcode-library-by-host-like-toast-fatal-error-when-activating-host-like-toast-shortcut-library?replies=1
+
 = 1.5 =
 * Added a new shortcode: [SITENAME]. This will output your WordPress site name in a SPAN with default ID "brandedSiteName".
 You change the ID and also add "class" and "style" as you wish. This shortcode is useful so that if you decide to
@@ -103,20 +107,6 @@ related="another related Twitter handle" (optional)
 
 == Upgrade Notice ==
 
-= 1.5 =
-* Added a new shortcode: [SITENAME]. This will output your WordPress site name in a SPAN with ID "brandedSiteName".
+= 1.6 =
 
-= 1.4 =
-Skipped.
-
-= 1.3 =
-* Restructured the code to be slightly cleaner so as to more easily as new shortcodes later
-
-= 1.2 =
-* Added Shortcode: [NOSC] ... [/NOSC]  Any shortcodes present within this shortcode are ignored.
-
-= 1.1 =
-* Added Shortcode: [TWEET]  (this creates a Twitter share button for the given page wherever you write it).
-
-= 1.0 =
-* Initial release.
+* Fix: Call-time pass-by-reference error reported
