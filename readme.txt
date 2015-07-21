@@ -3,8 +3,8 @@ Contributors: paultgoodchild
 Donate link: http://www.hostliketoast.com/
 Tags: Shortcodes, Library, WordPress
 Requires at least: 3.2.0
-Tested up to: 3.4
-Stable tag: 1.6
+Tested up to: 4.3
+Stable tag: 1.7
 
 With Wordpress Shortcode Library we bring you a collection of Shortcodes we find useful to help you get more from WordPress.
 
@@ -74,6 +74,10 @@ On the top-right select 'Wordpress Shortcode Library' from the menu.
 Edit as desired.
 
 == Changelog ==
+
+= 1.7 =
+
+* Clean up and update compatible version to WordPress 4.3.0
 
 = 1.6 =
 
